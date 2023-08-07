@@ -11,17 +11,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.restservice.entity.UserEntity;
-import com.demo.restservice.model.UserDetails;
-import com.demo.restservice.repository.UserRepository;
 
 @RestController
 //@CrossOrigin("http://localhost:4200")
 @CrossOrigin("*")
 public class UserController {
 	
-	@Autowired
-    private UserRepository userRepository;
+
 	
 	@GetMapping("/validate/{user}/{pass}")
 	String validateUserDetails(@PathVariable String user,@PathVariable String pass) {
