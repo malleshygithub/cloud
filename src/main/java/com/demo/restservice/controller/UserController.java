@@ -53,43 +53,10 @@ public class UserController {
 		
 	}
 	
-	@GetMapping(path = "/user/{user}")
-    public @ResponseBody UserEntity getUser(@PathVariable String user) {
-        try {
-        	System.out.println("here "+user);
-			return userRepository.findByUsername(user);
-        	//return userRepository.findAll();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return new UserEntity();
-    }
+	
 
-	@PostMapping(path = "/validateuser")
-    public  String validateUser(@RequestBody UserDetails userDet) {
-        try {
-        	System.out.println("here "+userDet.getUsername());
-        
-        	
-        	UserEntity ue = userRepository.findByUsername(userDet.getUsername());
-        	
-        	
-        	System.out.println("Success Response");
-        	if(null != ue)
-			  return ( ue.getUsername().equals(userDet.getUsername() )  &&
-					ue.getPassword12().equals(userDet.getPassword12() )  
-					?  "{\"message\":\"Login Success\"}" : "{\"Login Failure\"}");
-		
-			
-			
-        	//return userRepository.findAll();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "Login Failed";
-    }
+
+   
 
 	
 
