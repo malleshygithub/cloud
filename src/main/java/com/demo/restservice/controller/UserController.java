@@ -52,6 +52,15 @@ public class UserController {
 		
 		
 	}
+
+	@GetMapping("/saveuser")
+        public UserEntity get() {
+        	UserEntity user = new UserEntity();
+		user.setUsername("user");
+		user.setPassword12("password");
+        	userRepository.save(user);
+        	return user;
+        }
 	
 	@GetMapping(path = "/user/{user}")
     public @ResponseBody UserEntity getUser(@PathVariable String user) {
