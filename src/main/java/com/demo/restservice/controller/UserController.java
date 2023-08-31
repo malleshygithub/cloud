@@ -44,7 +44,7 @@ public class UserController {
 	}
 
 	@GetMapping("/save/{user}/{pass}")
-	String saveUserDetails(@PathVariable String user,@PathVariable String pass) {
+	UserEntity saveUserDetails(@PathVariable String user,@PathVariable String pass) {
 		
 		System.out.println("  User ,  Pass"+ user +" "+ pass);
 
