@@ -48,11 +48,11 @@ public class UserController {
 		
 		System.out.println("  User ,  Pass"+ user +" "+ pass);
 
-		UserEntity user = new UserEntity();
-		user.setUsername(user);
-		user.setPassword12(pass);
-        	userRepository.save(user);
-        	return user;
+		UserEntity user2 = new UserEntity();
+		user2.setUsername(user);
+		user2.setPassword12(pass);
+        	userRepository.save(user2);
+        	return user2;
 		
 		
 		
