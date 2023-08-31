@@ -42,6 +42,21 @@ public class UserController {
 		
 		
 	}
+
+	@GetMapping("/save/{user}/{pass}")
+	String validateUserDetails(@PathVariable String user,@PathVariable String pass) {
+		
+		System.out.println("  User ,  Pass"+ user +" "+ pass);
+
+		UserEntity user = new UserEntity();
+		user.setUsername(user);
+		user.setPassword12(pass);
+        	userRepository.save(user);
+        	return user;
+		
+		
+		
+	}
 	
 	@GetMapping("/user")
 	String getUserDetails(@RequestBody UserDetails userDet) {
