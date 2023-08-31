@@ -100,6 +100,7 @@ public class UserController {
         	
         	
         	System.out.println("Success Response");
+		System.out.println("pass "+ue.getPassword12());
         	if(null != ue)
 			  return ( ue.getUsername().equals(userDet.getUsername() )  &&
 					ue.getPassword12().equals(userDet.getPassword12() )  
