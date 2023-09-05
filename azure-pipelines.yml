@@ -12,7 +12,7 @@ pool:
 variables:
   storageAccountName: 'storepipelineimages' #Your storage account name
   containerName: 'test' #The container name which you want to copy files to
-  src: "$(Agent.BuildDirectory)/s/"
+  src: "$(Agent.BuildDirectory)/s/target/"
 
 steps:
 - task: Maven@3
