@@ -13,7 +13,7 @@ steps:
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
-    goals: 'deploy'
+    goals: 'package'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
@@ -22,6 +22,10 @@ steps:
     mavenOptions: '-Xmx3072m'
     mavenAuthenticateFeed: false
     effectivePomSkip: false
-    sonarQubeRunAnalysis: false
-    checkStyleRunAnalysis: true
-    pmdRunAnalysis: true
+- task: AzureFileCopy@5
+  inputs:
+    SourcePath: '$(Agent.BuildDirectory)/'
+    azureSubscription: 'Free Trial(684a847e-0690-4775-a082-94216afc2e4e)'
+    Destination: 'AzureBlob'
+    storage: 'storepipelineimages'
+    ContainerName: 'test'
