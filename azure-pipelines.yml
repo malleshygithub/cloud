@@ -12,7 +12,7 @@ pool:
 variables:
   storageAccountName: 'storepipelineimages' #Your storage account name
   containerName: 'test' #The container name which you want to copy files to
-  src: "$(Agent.BuildDirectory)/s/target/restservice-0.0.1-SNAPSHOT.jar"
+  src: "$(Agent.BuildDirectory)/s/target/"
 
 steps:
 - task: Maven@3
@@ -34,4 +34,4 @@ steps:
     azureSubscription: 'Free Trial(684a847e-0690-4775-a082-94216afc2e4e)'
     scriptType: 'pscore'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az storage blob upload-batch --overwrite --destination $(containerName) --account-name $(storageAccountName) --source $(src)'
+    inlineScript: 'az storage blob upload-batch --overwrite --destination $(containerName) --account-name $(storageAccountName) --source $(src) --pattern *.jar'
