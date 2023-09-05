@@ -9,6 +9,10 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  storageAccountName: 'storepipelineimages' #Your storage account name
+  containerName: 'test' #The container name which you want to copy files to
+
 steps:
 - task: Maven@3
   inputs:
@@ -22,3 +26,11 @@ steps:
     mavenOptions: '-Xmx3072m'
     mavenAuthenticateFeed: false
     effectivePomSkip: false
+
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'Free Trial(684a847e-0690-4775-a082-94216afc2e4e)'
+    scriptType: 'pscore'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'az storage blob upload-batch --destination $(containerName) --account-name $(storageAccountName) --source $(Agent.BuildDirectory)'
