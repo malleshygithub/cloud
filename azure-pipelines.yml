@@ -33,4 +33,4 @@ steps:
     azureSubscription: 'Free Trial(684a847e-0690-4775-a082-94216afc2e4e)'
     scriptType: 'pscore'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az storage blob upload-batch --destination $(containerName) --account-name $(storageAccountName) --source $(Agent.BuildDirectory)/target/*.jar'
+    inlineScript: 'az storage blob upload-batch --destination $(containerName) --account-name $(storageAccountName) --source $(Agent.BuildDirectory)/s/target/*.jar'
