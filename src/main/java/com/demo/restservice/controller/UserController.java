@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 import com.demo.restservice.model.UserDetails;
 
 
@@ -18,6 +22,8 @@ import com.demo.restservice.model.UserDetails;
 //@CrossOrigin("http://localhost:4200")
 @CrossOrigin("*")
 public class UserController {
+
+	Logger log = LoggerFactory.getLogger(UserController.class);
 
 	@PostMapping("/validate2/")
 	String validateUserDetailsPost(@RequestBody UserDetails userDet) {
@@ -33,10 +39,20 @@ public class UserController {
 			return "{\"message\":\"Login Failed\"}";
 				
 	}
+
+	@GetMapping("/loglevel")
+	public void logLevelDisplay () {
+    	log.error("Error message");
+    	log.warn("Warning message");
+     	log.info("Info message");
+    	log.debug("Debug message");
+    	log.trace("Trace message");
+    }
 	
 	@GetMapping("/validate/{user}/{pass}")
 	String validateUserDetails(@PathVariable String user,@PathVariable String pass) {
 		
+		log.info("UserName "+user+"  Pass  "+pass);
 		System.out.println("  User ,  Pass"+ user + pass);
 		
 		return "success";
