@@ -24,20 +24,26 @@ import com.demo.restservice.model.UserDetails;
 public class UserController {
 
 	Logger log = LoggerFactory.getLogger(UserController.class);
+	String className = this.getClass().getName();
 
 	@PostMapping("/validate2/")
 	String validateUserDetailsPost(@RequestBody UserDetails userDet) {
 		
 		System.out.println(" In User  Validate method ");
+		log.info("Enter "+className+"  method validateUserDetailsPost");
 		
 		System.out.println("  User = "+ userDet.getUsername()+ " Password = "+userDet.getPassword12());
 		
 		if("user".equalsIgnoreCase(userDet.getUsername())  
-				&& "password".equalsIgnoreCase(userDet.getPassword12()))
+				&& "password".equalsIgnoreCase(userDet.getPassword12())){
+			log.info("Exit "+className+"  method validateUserDetailsPost");	
 			return "{\"message\":\"Login Success\"}";
-		else
+			} else {
+			log.info("Exit "+className+"  method validateUserDetailsPost");
 			return "{\"message\":\"Login Failed\"}";
+			}
 				
+		//log.info("Exit "+className+"  method validateUserDetailsPost");
 	}
 
 	@GetMapping("/loglevel")
@@ -52,9 +58,12 @@ public class UserController {
 	@GetMapping("/validate/{user}/{pass}")
 	String validateUserDetails(@PathVariable String user,@PathVariable String pass) {
 		
-		log.info("UserName "+user+"  Pass  "+pass);
-		System.out.println("  User ,  Pass"+ user + pass);
+		log.info("Enter "+className+"  method validateUserDetails");
 		
+		log.error("UserName "+user+"  Pass  "+pass);
+		
+		
+		log.info("Exit "+className+"  method validateUserDetails");
 		return "success";
 				
 	}
@@ -63,16 +72,17 @@ public class UserController {
 	String validateUserDetailsPost() {
 		
 		//System.out.println("  User ,  Pass  "+ userDet.getUsername()+ "  "+userDet.getPassword12());
-		System.out.println(" YES GET");
+		log.info("Enter "+className+"  method validateUserDetailsGet");
+		//System.out.println(" YES GET");
 		return "{\"message\":\"Login Success\"}";		
 		
 	}
 	
 	@GetMapping("/user")
 	String getUserDetails(@RequestBody UserDetails userDet) {
-		
-	System.out.println("  User ,  Pass  "+ userDet.getUsername()+ "  "+userDet.getPassword12());
-	return "successPost";
+		log.info("Enter "+className+"  method getUserDetails");
+		//System.out.println("  User ,  Pass  "+ userDet.getUsername()+ "  "+userDet.getPassword12());
+		return "successPost";
 			
 	}
 }
